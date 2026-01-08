@@ -38,13 +38,42 @@ This project progresses from beginner to intermediate SQL, focusing on:
 
 ## 📁 File Structure
 
-```bash
 .
 ├── 01_select_statements.sql         # Basic queries to retrieve data
 ├── 02_filtering_where.sql           # Apply business filters
 ├── 03_aggregations_group_by.sql     # Summarize data for KPIs
 ├── 04_having_clause.sql             # Filter groups based on metrics
+
+📦 Datasets Used
+
+Sample data includes movie-related entities:
+
+🎭 actor_award
+
+🎬 movies
+
+🎥 directors
+
+📅 release_dates
+
+💰 box_office
+
+📂 genres
 ├── 05_order_by_aliases.sql          # Sort and rename for clarity
 ├── 06_limit_distinct.sql            # Limit rows and remove duplicates
 ├── 07_joins.sql                     # Combine data from multiple tables
 └── README.md
+
+genres
+
+🧩 Business Value
+
+This project empowers stakeholders with:
+
+🎯 Data-driven decision making
+
+📈 Performance tracking (actors, movies, genres)
+
+🧠 Insight into company trends and KPIs
+
+🗣️ Improved transparency for investors and executives
