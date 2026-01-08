@@ -1,0 +1,22 @@
+
+use mavenmovies;
+
+select i.store_id , i.inventory_id , f.title , f.description  from film f inner join inventory i
+on f.film_id =i.film_id;
+
+select f.title , count(fa.actor_id) as Number_of_actors from film f left join film_actor fa
+on f.film_id=fa.film_id
+group by f.title	;
+
+
+select a.first_name,a.last_name , f.title  from actor a inner join film_actor fa 
+on a.actor_id = fa.actor_id
+inner join film f 
+on  f.film_id=fa.film_id;
+
+SELECT distinct  f.title as title , f.description   FROM Film f inner join inventory as inv
+on f.film_id=inv.film_id and inv.store_id=2;
+
+select "advisor" as type , a.first_name , a.last_name from advisor a
+union 
+select "staff" as type ,s.first_name,s.last_name from staff s
