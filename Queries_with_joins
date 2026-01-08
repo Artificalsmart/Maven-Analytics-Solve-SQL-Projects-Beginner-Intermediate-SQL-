@@ -1,0 +1,81 @@
+use mavenmovies;
+
+select release_year , count(*) as total_number_of_rent  from film
+group by release_year;
+
+select * from inventory;
+
+select c.first_name, c.last_name,c.email from customer c;
+
+select distinct f.rental_duration from film f;
+
+select  customer_id , staff_id , rental_id, amount from payment
+order by customer_id
+limit 100;
+
+select * from payment 
+where amount > 5
+and payment_date > '2006-01-01';
+
+select * from payment
+where amount > 5 and
+customer_id in (42,45,60,75);
+
+select title, special_features from film
+where special_features like '%Behind the Scenes%';
+
+select rental_duration ,rating, replacement_cost, count(title) as films_with_rental_duration from film 
+group by rental_duration,
+rating, replacement_cost;
+
+select replacement_cost, count(f.title) as total_count, avg(rental_rate) avg_rental, min(rental_rate) smallest_rate , max(rental_rate) highest_rental  from film f
+group by replacement_cost;
+
+select customer_id, count(rental_id) as total_rental from rental
+group by customer_id
+having count(rental_id) < 15;
+
+select title ,length , rental_rate from film
+order by length desc , rental_rate desc;
+
+select first_name , last_name,
+case when active =1 and store_id=1 then 'store1 active' 
+	 when active =0 and store_id=1 then 'store1 inactve' 
+	 when active =1 and store_id=2 then 'store2 active' 
+	 when active =0 and store_id =2 then 'store2 inactve'
+     else 'you should check status and store' end  as store_and_status 
+    from customer ;
+    
+    select i.inventory_id, i.film_id,count(case when i.store_id=1 then i.inventory_id else null end) as count__of_store_1_inventory , count(case when i.store_id=2 then i.inventory_id else null end) as count__of_store_2_inventory from inventory i
+    group by i.inventory_id , i.film_id
+    order by i.inventory_id;
+    
+    Select store_id , count(case when active =0 then customer_id else null end) as inactive_customers ,count(case when active =1 then customer_id else null end) as active_customers from customer
+    group by store_id ;
+    
+    
+    select s.first_name, s.last_name , s.email  ,s.address_id , s.store_id  from staff s;
+    
+    select i.store_id , count(i.inventory_id)  as total_stock_in_inventory from  inventory i
+    group by i.store_id;
+    
+    select  
+    count(case when active = 1 and store_id=1 then customer_id end) as store1,
+    count(case when active = 1 and store_id=2 then customer_id end) as store2  
+    from customer;
+    
+    select  count(email) numbe_of_email from customer;
+    
+    
+    select   store_id ,  count(distinct film_id) as unique_films from inventory
+    group by store_id;
+    select count(distinct category_id) as number_of_categories from film_category;
+    
+    select min(replacement_cost) as lowest_cost ,max(replacement_cost) highest_cost ,
+    avg(replacement_cost) as average_cost from film;
+    
+    select avg(amount) as average_payment , max(amount) maximum_payment from payment;
+   
+   select customer_id , count(rental_id) number_of_rental  from rental 
+   group by customer_id
+   order by number_of_rental  desc
